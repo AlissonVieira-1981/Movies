@@ -1,0 +1,149 @@
+/* src/components/LandingPage.css */
+
+/* Permite rolagem leve */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: auto; /* 👈 permite rolagem suave */
+  scroll-behavior: smooth; /* 👈 rolagem suave */
+}
+
+/* Container principal */
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 👈 centraliza tudo verticalmente */
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  color: #39ff14;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 25px;
+  overflow-x: auto;
+}
+
+/* Bloco superior */
+.header-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Animações */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Logo responsivo com animação */
+.app-logo {
+  width: clamp(180px, 30vw, 300px);
+  filter: drop-shadow(0 0 15px #39ff14);
+  animation: fadeZoom 1.2s ease-out; /* 👈 animação aplicada */
+}
+
+/* Título responsivo com animação */
+.logo {
+  font-size: clamp(40px, 8vw, 90px);
+  text-shadow: 0 0 15px #e0e6df, 0 0 30px #39ff14;
+  margin: 0;
+  animation: fadeZoom 1.5s ease-out; /* 👈 animação aplicada */
+}
+
+/* Subtítulo */
+.subtitle {
+  font-size: clamp(14px, 3vw, 22px);
+  margin: 0;
+  max-width: 90%;
+  line-height: 1.4;
+  animation: fadeZoom 1.8s ease-out; /* 👈 animação aplicada */
+}
+
+/* Bloco de login */
+.login-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: fadeZoom 2s ease-out; /* 👈 animação aplicada */
+}
+
+/* Inputs + botão juntos */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 240px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #39ff14;
+  border-radius: 8px;
+  background-color: #111;
+  color: #e0e6df;
+  font-size: 13px;
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+  outline: none;
+}
+
+/* Botão centralizado com inputs */
+.landing-button {
+  padding: 12px;
+  width: 100%;
+  border: 2px solid #39ff14;
+  border-radius: 8px;
+  background-color: #111;
+  color: #e0e6df;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.landing-button:hover {
+  background-color: #222;
+  color: #39ff14;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .landing {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .app-logo {
+    width: 160px;
+  }
+
+  .logo {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    max-width: 85%;
+  }
+
+  .login-form {
+    max-width: 200px;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .landing-button {
+    font-size: 15px;
+  }
+}
