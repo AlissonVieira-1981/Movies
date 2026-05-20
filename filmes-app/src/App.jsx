@@ -14,7 +14,7 @@ function App() {
     const fetchMovies = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR&page=1",
+          "https://api.themoviedb.org/3/movie/popular?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR&page=1"
         );
         const data = await response.json();
         setMovies(data.results);
@@ -27,14 +27,16 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/lista" element={<MovieList movies={movies} />} />
-        <Route path="/card/:id" element={<MovieDetails />} />
-      </Routes>
-    </Router>
+    // 👇 Adicionamos o basename para funcionar no GitHub Pages
+<Router basename="/Movies">
+  <Routes>
+    <Route path="/" element={<LandingPage />} />
+    <Route path="/menu" element={<MenuPage />} />
+    <Route path="/lista" element={<MovieList movies={movies} />} />
+    <Route path="/card/:id" element={<MovieDetails />} />
+  </Routes>
+</Router>
+
   );
 }
 
