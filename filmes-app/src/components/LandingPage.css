@@ -1,28 +1,28 @@
 /* src/components/LandingPage.css */
 
-/* Permite rolagem leve */
+/* Reset e rolagem suave */
 html, body {
   height: 100%;
   margin: 0;
-  overflow: auto; /* 👈 permite rolagem suave */
-  scroll-behavior: smooth; /* 👈 rolagem suave */
+  padding: 0;
+  background-color: #000;
+  color: #39ff14;
+  overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Container principal */
 .landing {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; /* 👈 centraliza tudo verticalmente */
-  min-height: 100vh;
+  align-items: center;      
+  justify-content: center;  
+  min-height: 100dvh; /* 👈 altura real da viewport */
   width: 100vw;
-  background-color: #000;
-  color: #39ff14;
   text-align: center;
   box-sizing: border-box;
-  padding: 20px;
-  gap: 25px;
-  overflow-x: auto;
+  gap: 15px;
+   /* 👈 margem inferior para evitar corte em smartphones */
 }
 
 /* Bloco superior */
@@ -30,7 +30,9 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; 
   gap: 15px;
+  bottom: 50px; /* 👈 distância do topo para evitar corte em smartphones */
 }
 
 /* Animações */
@@ -47,26 +49,26 @@ html, body {
 
 /* Logo responsivo com animação */
 .app-logo {
-  width: clamp(180px, 30vw, 300px);
-  filter: drop-shadow(0 0 15px #39ff14);
-  animation: fadeZoom 1.2s ease-out; /* 👈 animação aplicada */
+  width: clamp(300px, 50vw, 420px);
+  filter: drop-shadow(0 0 25px #39ff14);
+  animation: fadeZoom 1.2s ease-out;
 }
 
 /* Título responsivo com animação */
 .logo {
-  font-size: clamp(40px, 8vw, 90px);
+  font-size: clamp(52px, 10vw, 110px);
   text-shadow: 0 0 15px #e0e6df, 0 0 30px #39ff14;
   margin: 0;
-  animation: fadeZoom 1.5s ease-out; /* 👈 animação aplicada */
+  animation: fadeZoom 1.5s ease-out;
 }
 
 /* Subtítulo */
 .subtitle {
-  font-size: clamp(14px, 3vw, 22px);
+  font-size: clamp(15px, 3vw, 22px);
   margin: 0;
   max-width: 90%;
   line-height: 1.4;
-  animation: fadeZoom 1.8s ease-out; /* 👈 animação aplicada */
+  animation: fadeZoom 1.8s ease-out;
 }
 
 /* Bloco de login */
@@ -74,27 +76,29 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; 
   gap: 12px;
-  animation: fadeZoom 2s ease-out; /* 👈 animação aplicada */
+  animation: fadeZoom 2s ease-out;
 }
 
 /* Inputs + botão juntos */
 .login-form {
   display: flex;
   flex-direction: column;
+  align-items: center; 
   gap: 8px;
   width: 100%;
-  max-width: 240px;
+  max-width: 260px;
 }
 
 .login-input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 2px solid #39ff14;
   border-radius: 8px;
   background-color: #111;
   color: #e0e6df;
-  font-size: 13px;
+  font-size: 14px;
   box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
   outline: none;
 }
@@ -117,33 +121,77 @@ html, body {
   color: #39ff14;
 }
 
-/* Responsividade */
+/* Responsividade para smartphones */
 @media (max-width: 480px) {
   .landing {
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 25px;
+    padding: 15px 30px; /* 👈 margem lateral adicionada */
+    min-height: 100dvh;
   }
 
   .app-logo {
-    width: 160px;
+    width: 320px; /* 👈 logo maior e centralizado */
   }
 
   .logo {
-    font-size: 48px;
+    font-size: 60px;
   }
 
   .subtitle {
-    font-size: 14px;
-    max-width: 85%;
+    font-size: 15px;
+    max-width: 90%;
   }
 
   .login-form {
-    max-width: 200px;
-    gap: 6px;
+    max-width: 240px;
+    gap: 8px;
     align-items: center;
   }
 
+  .login-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
   .landing-button {
-    font-size: 15px;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* Responsividade para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .landing {
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 60px; /* 👈 margem lateral também para tablets */
+  }
+
+  .app-logo {
+    width: 340px;
+  }
+
+  .logo {
+    font-size: 70px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    max-width: 80%;
+  }
+
+  .login-form {
+    max-width: 260px;
+  }
+
+  .login-input {
+    font-size: 14px;
+  }
+
+  .landing-button {
+    font-size: 16px;
   }
 }

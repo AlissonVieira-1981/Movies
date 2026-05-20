@@ -222,6 +222,7 @@ html, body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 6px;
+    margin-right: 20px;
   }
 
   .genre-buttons button {
@@ -254,15 +255,17 @@ html, body {
 
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 6px;
     justify-items: center;
     max-width: 100%;
     padding-bottom: 20px;
+    
+
   }
 
   .card {
     width: 160px;
-    height: 280px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -9,7 +9,7 @@ const MovieList = ({ movies }) => {
 
   const genres = [
     "Ação","Comédia","Drama","Terror","Romance","Ficção","Suspense","Gospel",
-    "Documentário","Canais Abertos","Desenho Infantil","Novelas","Séries",
+    "Documentário","Canais Abertos","Infantil","Novelas","Séries",
     "Musical","Lançamentos","Pod Cast",
   ];
 

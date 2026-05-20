@@ -7,39 +7,40 @@ const LandingPage = () => {
   return (
     <div
       style={{
+        position: "relative", // 👈 permite posicionar elementos livremente
         backgroundColor: "#000",
         color: "#39ff14",
         width: "100vw",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
+        height: "100dvh",
         overflow: "hidden",
-        padding: "20px",
       }}
     >
-      {/* Logo grande */}
+      {/* Logo */}
       <img
-        src={`${import.meta.env.BASE_URL}logo.png`} // 👈 pega do public
+        src={`${import.meta.env.BASE_URL}logo.png`}
         alt="Logo do App"
         style={{
-          width: "clamp(220px, 35vw, 380px)",
-          height: "auto",
-          filter: "drop-shadow(0 0 20px #39ff14)",
-          marginBottom: "20px",
+          position: "absolute",
+          top: "80%", // 👈 centraliza verticalmente
+          left: "50%", // 👈 centraliza horizontalmente
+          transform: "translate(-50%, -120%)", // 👈 ajusta posição acima do centro
+          width: "clamp(260px, 40vw, 420px)",
+          filter: "drop-shadow(0 0 25px #39ff14)",
         }}
       />
 
-      {/* Título chamativo */}
+      {/* Título */}
       <h1
         style={{
-          fontSize: "clamp(48px, 10vw, 100px)",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -40%)", // 👈 logo abaixo do logo
+          fontSize: "clamp(48px, 10vw, 10px)",
           fontWeight: "bold",
           textShadow:
             "0 0 10px #e0e6df, 0 0 20px #39ff14, 0 0 40px #e0e6df, 0 0 80px #39ff14",
-          marginBottom: "80px",
+          margin: 0,
         }}
       >
         Nexus Movie
@@ -48,11 +49,15 @@ const LandingPage = () => {
       {/* Texto de boas-vindas */}
       <p
         style={{
+          position: "absolute",
+          top: "60%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           fontSize: "clamp(16px, 3vw, 22px)",
           color: "#e0e6df",
           textShadow: "0 0 8px #39ff14",
-          marginBottom: "40px",
           maxWidth: "600px",
+          margin: 0,
         }}
       >
         Bem-vindo ao seu portal de filmes, séries e canais abertos.
@@ -61,6 +66,10 @@ const LandingPage = () => {
       {/* Campos de login */}
       <div
         style={{
+          position: "absolute",
+          top: "72%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
@@ -124,29 +133,28 @@ const LandingPage = () => {
         </button>
       </div>
 
-      {/* Animação neon + responsividade */}
+      {/* Responsividade */}
       <style>
         {`
-          @keyframes pulse {
-            0% { text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
-            50% { text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14; }
-            100% { text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
-          }
-
           @media (max-width: 768px) {
             img {
+              transform: translate(-50%, -130%) !important;
               width: 320px !important;
-              margin-bottom: 25px !important;
             }
 
             h1 {
+              transform: translate(-50%, -50%) !important;
               font-size: 72px !important;
-              margin-bottom: 25px !important;
             }
 
             p {
+              top: 62% !important;
               font-size: 18px !important;
-              margin-bottom: 35px !important;
+            }
+
+            div {
+              top: 78% !important;
+              gap: 8px !important;
             }
 
             input, button {
