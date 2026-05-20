@@ -10,7 +10,7 @@ const MenuPage = () => {
     backgroundColor: "#000",
     color: "#39ff14",
     border: "2px solid #39ff14",
-    borderRadius: "50%", // 👈 garante círculo perfeito
+    borderRadius: "50%",
     fontWeight: "bold",
     fontSize: "22px",
     cursor: "pointer",
@@ -21,7 +21,7 @@ const MenuPage = () => {
     justifyContent: "center",
     gap: "15px",
     overflow: "hidden",
-    aspectRatio: "1 / 1", // 👈 mantém proporção exata
+    aspectRatio: "1 / 1",
   };
 
   const neonText = {
@@ -41,14 +41,14 @@ const MenuPage = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        overflow: "hidden", // 👈 impede scroll
+        overflow: "hidden",
         textAlign: "center",
         padding: "2px",
       }}
     >
       {/* Logo */}
       <img
-        src="/logo.png"
+        src={`${import.meta.env.BASE_URL}logo.png`} // 👈 pega do public
         alt="Logo do App"
         style={{
           width: "clamp(180px, 25vw, 300px)",
@@ -79,7 +79,6 @@ const MenuPage = () => {
             50% { text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14; }
             100% { text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
           }
-          /* Responsividade: círculos menores em telas pequenas */
           @media (max-width: 768px) {
             button {
               width: 140px !important;
@@ -113,7 +112,7 @@ const MenuPage = () => {
           onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
         >
           <img
-            src="/pelicula-icon.png"
+            src={`${import.meta.env.BASE_URL}pelicula-icon.png`} // 👈 pega do public
             alt="Ícone de Película"
             style={{
               width: "100px",
@@ -134,7 +133,7 @@ const MenuPage = () => {
           onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
         >
           <img
-            src="/pelicula-icon.png"
+            src={`${import.meta.env.BASE_URL}pelicula-icon.png`}
             alt="Ícone de Película"
             style={{
               width: "100px",

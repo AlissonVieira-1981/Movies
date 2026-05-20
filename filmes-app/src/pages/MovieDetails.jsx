@@ -25,6 +25,11 @@ const MovieDetails = () => {
 
   if (!movie) return <p style={{ color: "#39ff14" }}>Carregando detalhes...</p>;
 
+  // Se não houver poster, usa imagem padrão do public
+  const posterUrl = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : `${import.meta.env.BASE_URL}no-poster.png`;
+
   return (
     <div
       style={{
@@ -59,34 +64,43 @@ const MovieDetails = () => {
         ← Voltar
       </button>
 
-    <h1
-  style={{
-    color: "#e0e6df",              // cor aplicada ao texto
-    textShadow: "0 0 10px #e0e6df", // sombra neon na mesma cor
-    marginTop: "60px",
-  }}
->
-  {movie.title}
-</h1>
+      {/* Título */}
+      <h1
+        style={{
+          color: "#e0e6df",
+          textShadow: "0 0 10px #e0e6df",
+          marginTop: "60px",
+          textAlign: "center",
+        }}
+      >
+        {movie.title}
+      </h1>
 
+      {/* Poster */}
+      <img
+        src={posterUrl}
+        alt={movie.title}
+        style={{
+          width: "200px",
+          borderRadius: "10px",
+          marginBottom: "20px",
+          display: "block",
+          marginLeft: "auto",
+          marginRight: "auto",
+          boxShadow: "0 0 12px rgba(224, 230, 223, 0.4)",
+        }}
+      />
 
-<img
-  src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-  alt={movie.title}
-  style={{
-    width: "200px",          // largura menor
-    borderRadius: "10px",
-    marginBottom: "20px",
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",     // centraliza a imagem
-    boxShadow: "0 0 12px rgba(224, 230, 223, 0.4)", // glow discreto
-  }}
-/>
-
-      <p><strong>Sinopse:</strong> {movie.overview}</p>
-      <p><strong>Data de lançamento:</strong> {movie.release_date}</p>
-      <p><strong>Nota:</strong> {movie.vote_average}</p>
+      {/* Informações */}
+      <p>
+        <strong>Sinopse:</strong> {movie.overview}
+      </p>
+      <p>
+        <strong>Data de lançamento:</strong> {movie.release_date}
+      </p>
+      <p>
+        <strong>Nota:</strong> {movie.vote_average}
+      </p>
     </div>
   );
 };

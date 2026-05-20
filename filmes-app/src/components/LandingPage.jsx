@@ -1,4 +1,4 @@
-// src/pages/LandingPage.jsx
+// src/components/LandingPage.jsx
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
@@ -22,7 +22,7 @@ const LandingPage = () => {
     >
       {/* Logo grande */}
       <img
-        src="/logo.png"
+        src={`${import.meta.env.BASE_URL}logo.png`} // 👈 pega do public
         alt="Logo do App"
         style={{
           width: "clamp(220px, 35vw, 380px)",
@@ -133,24 +133,9 @@ const LandingPage = () => {
             100% { text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
           }
 
-          /* Responsividade — tudo centralizado */
           @media (max-width: 768px) {
-            body, html {
-              overflow-x: hidden;
-              overflow-y: auto;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-
-            div {
-              justify-content: center !important;
-              align-items: center !important;
-              text-align: center !important;
-            }
-
             img {
-              width: 320px !important; /* 👈 rolo de filme maior */
+              width: 320px !important;
               margin-bottom: 25px !important;
             }
 

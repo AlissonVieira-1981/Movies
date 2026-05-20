@@ -21,7 +21,6 @@ const MovieList = ({ movies }) => {
     <div className="movie-list">
       {/* Sidebar */}
       <div className="sidebar">
-        {/* Título do app para mobile */}
         <h2 className="sidebar-title">WELCOME</h2>
 
         {/* Ícone da TV — visível apenas em PC */}
@@ -62,15 +61,23 @@ const MovieList = ({ movies }) => {
         </div>
 
         <div className="grid">
-          {filteredMovies.map((movie) => (
-            <div key={movie.id} className="card" onClick={() => navigate(`/card/${movie.id}`)}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <h3>{movie.title}</h3>
-            </div>
-          ))}
+          {filteredMovies.map((movie) => {
+            // Fallback para imagem padrão
+            const posterUrl = movie.poster_path
+              ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+              : `${import.meta.env.BASE_URL}no-poster.png`;
+
+            return (
+              <div
+                key={movie.id}
+                className="card"
+                onClick={() => navigate(`/card/${movie.id}`)}
+              >
+                <img src={posterUrl} alt={movie.title} />
+                <h3>{movie.title}</h3>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
