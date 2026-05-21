@@ -33,7 +33,13 @@ const MenuPage = () => {
   return (
     <div
       style={{
+        /* 👇 fundo futurista com fallback */
         backgroundColor: "#000",
+        backgroundImage: "url('/Movies/images/futuristic-texture.png')", // ✅ caminho ajustado conforme base URL
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+
         color: "#39ff14",
         width: "100vw",
         height: "100vh",
@@ -44,11 +50,12 @@ const MenuPage = () => {
         overflow: "hidden",
         textAlign: "center",
         padding: "2px",
+        position: "relative",
       }}
     >
       {/* Logo */}
       <img
-        src={`${import.meta.env.BASE_URL}logo.png`} // 👈 pega do public
+        src={`${import.meta.env.BASE_URL}logo.png`}
         alt="Logo do App"
         style={{
           width: "clamp(180px, 25vw, 300px)",
@@ -112,7 +119,7 @@ const MenuPage = () => {
           onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
         >
           <img
-            src={`${import.meta.env.BASE_URL}pelicula-icon.png`} // 👈 pega do public
+            src={`${import.meta.env.BASE_URL}pelicula-icon.png`}
             alt="Ícone de Película"
             style={{
               width: "100px",

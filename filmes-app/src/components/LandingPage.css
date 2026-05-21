@@ -1,231 +1,120 @@
 /* src/components/LandingPage.css */
 
-/* Reset e rolagem suave */
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
   background-color: #000;
-  color: #39ff14;
-  overflow: hidden;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Container principal */
-.landing {
+/* 👇 prefixo exclusivo: landing- */
+.landing-page {
   display: flex;
   flex-direction: column;
-  align-items: center;      
-  justify-content: center;  
-  min-height: 100dvh;
+  align-items: center;        
+  justify-content: center;    
+  height: 100vh;
   width: 100vw;
+  background-color: #000;
+  background-image: url('/images/futuristic-texture.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #39ff14;
   text-align: center;
+  gap: 20px;
+  padding: 20px;
   box-sizing: border-box;
-  gap: 15px;
+  position: relative;
 }
 
-/* Bloco superior */
-.header-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-  gap: 15px;
+.landing-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
 }
 
-/* Animações */
-@keyframes fadeZoom {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.landing-page > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* Logo responsivo com animação */
-.app-logo {
-  width: clamp(300px, 50vw, 420px);
+.landing-logo {
+  width: clamp(280px, 25vw, 420px);
   filter: drop-shadow(0 0 25px #39ff14);
-  animation: fadeZoom 1.2s ease-out;
-  margin-bottom: 10px; /* 👈 espaço entre logo e título */
+  margin-bottom: 8px;
 }
 
-/* Título responsivo com animação */
-.logo {
-  font-size: clamp(52px, 10vw, 110px);
-  text-shadow: 0 0 15px #e0e6df, 0 0 30px #39ff14;
-  margin: 0;
-  animation: fadeZoom 1.5s ease-out;
+.landing-title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: bold;
+  text-shadow: 0 0 10px #e0e6df, 0 0 20px #39ff14;
+  margin: 0 0 15px 0;
 }
 
-/* Subtítulo */
-.subtitle {
-  font-size: clamp(15px, 3vw, 22px);
-  margin: 0;
-  max-width: 90%;
-  line-height: 1.4;
-  animation: fadeZoom 1.8s ease-out;
+.landing-text {
+  font-size: clamp(16px, 2vw, 22px);
+  color: #e0e6df;
+  text-shadow: 0 0 8px #39ff14;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Bloco de login */
-.login-block {
+.landing-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
-  gap: 12px;
-  animation: fadeZoom 2s ease-out;
+  gap: 15px;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-/* Inputs + botão juntos */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  gap: 8px;
+.landing-input {
   width: 100%;
-  max-width: 260px;
-}
-
-.login-input {
-  width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 2px solid #39ff14;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #111;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
   color: #e0e6df;
-  font-size: 14px;
-  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+  font-size: 15px;
   outline: none;
 }
 
-/* Botão centralizado com inputs */
 .landing-button {
-  padding: 12px;
-  width: 100%;
+  padding: 10px 24px;
   border: 2px solid #39ff14;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #111;
   color: #e0e6df;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  margin: 0 auto;
+  display: inline-block;
+  width: auto;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
 }
 
 .landing-button:hover {
   background-color: #222;
-  color: #39ff14;
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.6);
 }
 
-/* ======== RESPONSIVIDADE PARA SMARTPHONES ======== */
-@media (max-width: 480px) {
-  .landing {
-    position: relative;
-    width: 100vw;
-    height: 100dvh;
-    overflow: hidden;
-  }
-
-  /* Logo maior e acima do título */
-  .app-logo {
-    position: absolute;
-    top: 30%; /* 👈 sobe o logo */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 360px !important;
-    filter: drop-shadow(0 0 25px #39ff14);
-  }
-
-  /* Título abaixo do logo */
-  .logo {
-    position: absolute;
-    top: 50%; /* 👈 logo abaixo do logo */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 60px !important;
-    margin: 0;
-    text-shadow: 0 0 10px #e0e6df, 0 0 20px #39ff14;
-  }
-
-  /* Subtítulo */
-  .subtitle {
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 15px !important;
-    max-width: 90%;
-    color: #e0e6df;
-    text-shadow: 0 0 8px #39ff14;
-  }
-
-  /* Bloco de login */
-  .login-block {
-    position: absolute;
-    top: 78%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 90%;
-    max-width: 300px;
-  }
-
-  .login-form {
-    width: 100%;
-    max-width: 240px;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .login-input {
-    font-size: 14px;
+/* Responsividade */
+@media (max-width: 768px) {
+  .landing-page {
     padding: 10px;
+    gap: 15px;
   }
 
-  .landing-button {
-    font-size: 16px;
-    padding: 12px;
-  }
-}
-
-/* ======== RESPONSIVIDADE PARA TABLETS ======== */
-@media (min-width: 481px) and (max-width: 1024px) {
-  .landing {
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    padding: 30px 60px;
-  }
-
-  .app-logo {
-    width: 340px;
-    margin-bottom: 10px;
-  }
-
-  .logo {
-    font-size: 70px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    max-width: 80%;
-  }
-
-  .login-form {
-    max-width: 260px;
-  }
-
-  .login-input {
-    font-size: 14px;
-  }
-
-  .landing-button {
-    font-size: 16px;
-  }
+  .landing-logo { width: 240px; margin-bottom: 5px; }
+  .landing-title { font-size: 30px; margin-bottom: 8px; }
+  .landing-text { font-size: 16px; padding: 0 15px; }
+  .landing-form { max-width: 260px; }
 }
