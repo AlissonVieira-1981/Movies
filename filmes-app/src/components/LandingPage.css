@@ -17,12 +17,11 @@ html, body {
   flex-direction: column;
   align-items: center;      
   justify-content: center;  
-  min-height: 100dvh; /* 👈 altura real da viewport */
+  min-height: 100dvh;
   width: 100vw;
   text-align: center;
   box-sizing: border-box;
   gap: 15px;
-   /* 👈 margem inferior para evitar corte em smartphones */
 }
 
 /* Bloco superior */
@@ -32,7 +31,6 @@ html, body {
   align-items: center;
   justify-content: center; 
   gap: 15px;
-  bottom: 50px; /* 👈 distância do topo para evitar corte em smartphones */
 }
 
 /* Animações */
@@ -52,6 +50,7 @@ html, body {
   width: clamp(300px, 50vw, 420px);
   filter: drop-shadow(0 0 25px #39ff14);
   animation: fadeZoom 1.2s ease-out;
+  margin-bottom: 10px; /* 👈 espaço entre logo e título */
 }
 
 /* Título responsivo com animação */
@@ -121,30 +120,64 @@ html, body {
   color: #39ff14;
 }
 
-/* Responsividade para smartphones */
+/* ======== RESPONSIVIDADE PARA SMARTPHONES ======== */
 @media (max-width: 480px) {
   .landing {
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    padding: 15px 30px; /* 👈 margem lateral adicionada */
-    min-height: 100dvh;
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
   }
 
+  /* Logo maior e acima do título */
   .app-logo {
-    width: 320px; /* 👈 logo maior e centralizado */
+    position: absolute;
+    top: 30%; /* 👈 sobe o logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px !important;
+    filter: drop-shadow(0 0 25px #39ff14);
   }
 
+  /* Título abaixo do logo */
   .logo {
-    font-size: 60px;
+    position: absolute;
+    top: 50%; /* 👈 logo abaixo do logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px !important;
+    margin: 0;
+    text-shadow: 0 0 10px #e0e6df, 0 0 20px #39ff14;
   }
 
+  /* Subtítulo */
   .subtitle {
-    font-size: 15px;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px !important;
     max-width: 90%;
+    color: #e0e6df;
+    text-shadow: 0 0 8px #39ff14;
+  }
+
+  /* Bloco de login */
+  .login-block {
+    position: absolute;
+    top: 78%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 300px;
   }
 
   .login-form {
+    width: 100%;
     max-width: 240px;
     gap: 8px;
     align-items: center;
@@ -161,17 +194,18 @@ html, body {
   }
 }
 
-/* Responsividade para tablets */
+/* ======== RESPONSIVIDADE PARA TABLETS ======== */
 @media (min-width: 481px) and (max-width: 1024px) {
   .landing {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    padding: 30px 60px; /* 👈 margem lateral também para tablets */
+    padding: 30px 60px;
   }
 
   .app-logo {
     width: 340px;
+    margin-bottom: 10px;
   }
 
   .logo {
