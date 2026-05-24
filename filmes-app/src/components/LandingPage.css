@@ -96,6 +96,7 @@ html, body {
   cursor: pointer;
   transition: 0.3s;
   margin: 0 auto;
+  margin-bottom: 20px;
   display: inline-block;
   width: auto;
   box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);

@@ -2,48 +2,39 @@
 .landing {
   background-color: black;
   color: #39ff14;
-  height: 100vh; /* sempre ocupa a tela inteira */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centraliza verticalmente */
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-/* Logo da imagem */
 .app-logo {
-  width: 300px; /* aumenta o logo sem exagero */
-  margin-bottom: 20px; /* espaço entre logo e nome */
+  width: 300px;
+  margin-bottom: 20px;
   filter: drop-shadow(0 0 15px #39ff14) drop-shadow(0 0 30px #00ff00);
 }
 
-/* Nome do App */
 .logo {
-  font-size: 6rem; /* tamanho fixo do texto */
+  font-size: 6rem;
   font-weight: bold;
-  text-shadow:
-    0 0 5px #e0e6df,
-    0 0 10px #39ff14,
-    0 0 20px #e0e6df,
-    0 0 40px #00ff00;
-  margin-bottom: 70px; /* espaço entre nome e subtítulo */
+  text-shadow: 0 0 5px #e0e6df, 0 0 10px #39ff14, 0 0 20px #e0e6df, 0 0 40px #00ff00;
+  margin-bottom: 70px;
 }
 
-/* Subtítulo */
 .subtitle {
   font-size: 1.5rem;
-  margin-bottom: 30px; /* espaço controlado */
+  margin-bottom: 30px;
   color: #39ff14;
 }
 
-/* Formulário de login */
-/* Formulário de login */
 .login-form {
   display: flex;
-  flex-direction: row; /* agora os inputs ficam lado a lado */
-  gap: 20px; /* espaço entre os inputs */
+  flex-direction: row;
+  gap: 20px;
   margin-bottom: 30px;
-  justify-content: center; /* centraliza horizontalmente */
+  justify-content: center;
 }
 
 .login-input {
@@ -52,12 +43,10 @@
   border: 2px solid #39ff14;
   border-radius: 8px;
   padding: 12px;
-  width: 200px; /* largura ajustada para caber lado a lado */
+  width: 200px;
   font-size: 1rem;
   text-align: center;
-  box-shadow:
-    0 0 6px #39ff14,
-    0 0 12px #00ff00;
+  box-shadow: 0 0 6px #39ff14, 0 0 12px #00ff00;
 }
 
 .login-input::placeholder {
@@ -65,7 +54,6 @@
   opacity: 0.7;
 }
 
-/* Botão neon */
 .neon-button {
   background-color: black;
   color: #39ff14;
@@ -77,107 +65,66 @@
   font-weight: bold;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow:
-    0 0 10px #39ff14,
-    0 0 20px #00ff00;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #00ff00;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .neon-button:hover {
   transform: scale(1.1);
-  box-shadow:
-    0 0 20px #39ff14,
-    0 0 40px #00ff00,
-    0 0 60px #00ff00;
+  box-shadow: 0 0 20px #39ff14, 0 0 40px #00ff00, 0 0 60px #00ff00;
   background-color: #111;
   color: #00ff00;
 }
 
-/* Página de Menu */
-.menu {
-  background-color: black;
-  color: #39ff14;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* centraliza verticalmente */
-  align-items: center;
-  text-align: center;
-}
-
-.menu-title {
-  font-size: 2.5rem;
-  margin-bottom: 80px;
-  text-shadow:
-    0 0 10px #39ff14,
-    0 0 20px #00ff00;
-}
-
-.menu-buttons {
-  display: flex;
-  gap: 40px; /* mais espaço entre os botões */
-  justify-content: center;
-}
-
-/* Página de Filmes */
-.filmes {
-  background-color: black;
-  color: #39ff14;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.page-title {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-shadow:
-    0 0 10px #39ff14,
-    0 0 20px #00ff00;
-}
-
-.page-subtitle {
-  font-size: 1.2rem;
-  color: #39ff14;
-}
-
-.menu-buttons a {
-  text-decoration: none; /* remove o sublinhado */
-}
-
-/* Botão da LandingPage */
 .landing-button {
   background-color: black;
   color: #39ff14;
   border: 2px solid #39ff14;
   border-radius: 8px;
-  padding: 12px 30px; /* tamanho menor */
+  padding: 12px 30px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow:
-    0 0 8px #39ff14,
-    0 0 16px #00ff00;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 0 8px #39ff14, 0 0 16px #00ff00;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .landing-button:hover {
   transform: scale(1.05);
-  box-shadow:
-    0 0 12px #39ff14,
-    0 0 24px #00ff00;
+  box-shadow: 0 0 12px #39ff14, 0 0 24px #00ff00;
   background-color: #111;
   color: #00ff00;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
 
+  .app-logo {
+    width: 180px;
+  }
+
+  .login-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .login-input {
+    width: 100%;
+  }
+
+  .neon-button {
+    width: 120px;
+    height: 120px;
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}

@@ -1,10 +1,12 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+document.getElementById("root").style.backgroundColor = "transparent";
 import { useState, useEffect } from "react";
 import LandingPage from "./components/LandingPage";
 import MenuPage from "./pages/MenuPage";
 import MovieList from "./components/MovieList";
 import MovieDetails from "./pages/MovieDetails";
+import Canais from "./pages/Canais"; // 👈 Importamos a nova página
 import "./App.css";
 
 function App() {
@@ -28,15 +30,15 @@ function App() {
 
   return (
     // 👇 Adicionamos o basename para funcionar no GitHub Pages
-<Router basename="/Movies">
-  <Routes>
-    <Route path="/" element={<LandingPage />} />
-    <Route path="/menu" element={<MenuPage />} />
-    <Route path="/lista" element={<MovieList movies={movies} />} />
-    <Route path="/card/:id" element={<MovieDetails />} />
-  </Routes>
-</Router>
-
+    <Router basename="/Movies">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/lista" element={<MovieList movies={movies} />} />
+        <Route path="/card/:id" element={<MovieDetails />} />
+        <Route path="/canais" element={<Canais />} /> {/* 👈 Nova rota adicionada */}
+      </Routes>
+    </Router>
   );
 }
 

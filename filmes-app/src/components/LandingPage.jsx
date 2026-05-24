@@ -1,4 +1,3 @@
-// src/components/LandingPage.jsx
 import { useNavigate } from "react-router-dom";
 import './LandingPage.css';
 
@@ -23,6 +22,7 @@ const LandingPage = () => {
         <input type="text" placeholder="Usuário" className="landing-input" />
         <input type="password" placeholder="Senha" className="landing-input" />
         <button
+          type="button"
           onClick={() => navigate("/menu")}
           className="landing-button"
         >

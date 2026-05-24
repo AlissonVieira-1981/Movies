@@ -33,13 +33,11 @@ const MenuPage = () => {
   return (
     <div
       style={{
-        /* 👇 fundo futurista com fallback */
         backgroundColor: "#000",
-        backgroundImage: "url('/Movies/images/futuristic-texture.png')", // ✅ caminho ajustado conforme base URL
+        backgroundImage: "url('/Movies/images/futuristic-texture.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-
         color: "#39ff14",
         width: "100vw",
         height: "100vh",
@@ -61,7 +59,7 @@ const MenuPage = () => {
           width: "clamp(180px, 25vw, 300px)",
           height: "auto",
           filter: "drop-shadow(0 0 12px #39ff14)",
-          marginBottom: "20px",
+          
         }}
       />
 
@@ -71,8 +69,8 @@ const MenuPage = () => {
           fontSize: "clamp(48px, 8vw, 94px)",
           fontWeight: "bold",
           textShadow:
-            "0 0 10px #e0e6df, 0 0 20px #39ff14, 0 0 40px #e0e6df, 0 0 80px #39ff14",
-          marginBottom: "60px",
+            "0 0 50px #e0e6df, 0 0 20px #39ff14, 0 0 80px #e0e6df, 0 0 80px #39ff14",
+          marginBottom: "50px",
         }}
       >
         Nexus Movie
@@ -155,7 +153,7 @@ const MenuPage = () => {
 
         {/* Botão Canais */}
         <button
-          onClick={() => alert("Página de canais em construção!")}
+          onClick={() => navigate("/canais")}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = "#111")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
