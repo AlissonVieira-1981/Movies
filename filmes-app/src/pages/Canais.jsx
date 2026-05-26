@@ -28,7 +28,7 @@ export default function Canais() {
     <div className="canais-container">
       
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className="canais-sidebar">
         <button onClick={() => navigate("/menu")}>← Voltar</button>
         <h2>Canais</h2>
         {canais.map((canal) => (

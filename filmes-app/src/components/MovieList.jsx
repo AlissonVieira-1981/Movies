@@ -20,7 +20,7 @@ const MovieList = ({ movies }) => {
   return (
     <div className="movie-list">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className="sidebar-movie-list">
         <h2 className="sidebar-title">WELCOME</h2>
 
         {/* Ícone da TV — visível apenas em PC */}
@@ -47,39 +47,41 @@ const MovieList = ({ movies }) => {
         </div>
       </div>
 
-      {/* Área principal */}
-      <div className="main">
-        <div className="top-bar">
-          <input
-            type="text"
-            placeholder="Buscar filmes..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <h1 className="title">Nexus Movie</h1>
-          <button className="exit" onClick={() => navigate("/")}>Sair</button>
-        </div>
+     {/* Área principal */}
+<div className="main">
+  <div className="top-bar-container">
+    <div className="top-bar">
+      <input
+        type="text"
+        placeholder="Buscar filmes..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <h1 className="title">Nexus Movie</h1>
+      <button className="exit" onClick={() => navigate("/")}>Sair</button>
+    </div>
+  </div>
 
-        <div className="grid">
-          {filteredMovies.map((movie) => {
-            // Fallback para imagem padrão
-            const posterUrl = movie.poster_path
-              ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-              : `${import.meta.env.BASE_URL}no-poster.png`;
+  <div className="grid">
+    {filteredMovies.map((movie) => {
+      const posterUrl = movie.poster_path
+        ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+        : `${import.meta.env.BASE_URL}no-poster.png`;
 
-            return (
-              <div
-                key={movie.id}
-                className="card"
-                onClick={() => navigate(`/card/${movie.id}`)}
-              >
-                <img src={posterUrl} alt={movie.title} />
-                <h3>{movie.title}</h3>
-              </div>
-            );
-          })}
+      return (
+        <div
+          key={movie.id}
+          className="card"
+          onClick={() => navigate(`/card/${movie.id}`)}
+        >
+          <img src={posterUrl} alt={movie.title} />
+          <h3>{movie.title}</h3>
         </div>
-      </div>
+      );
+    })}
+  </div>
+</div>
+
     </div>
   );
 };
