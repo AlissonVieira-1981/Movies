@@ -1,12 +1,12 @@
-// src/components/MovieList.jsx
+// src/pages/SeriesPage.jsx
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import "./MovieList.css";
+import "./SeriesPage.css";
 
-const MovieList = () => {
+const SeriesPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -16,27 +16,25 @@ const MovieList = () => {
     "Musical", "Lançamentos", "Pod Cast",
   ];
 
-  // Busca filmes da API sempre que a página mudar
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchSeries = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR&page=${page}`
+          `https://api.themoviedb.org/3/tv/popular?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR&page=${page}`
         );
         const data = await response.json();
-        setMovies(data.results);
+        setSeries(data.results);
         setTotalPages(data.total_pages);
       } catch (error) {
-        console.error("Erro ao buscar filmes:", error);
+        console.error("Erro ao buscar séries:", error);
       }
     };
 
-    fetchMovies();
+    fetchSeries();
   }, [page]);
 
-  // Filtro de busca local
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredSeries = series.filter((serie) =>
+    serie.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -62,7 +60,7 @@ const MovieList = () => {
         {/* Botões de gênero */}
         <div className="genre-buttons">
           {genres.map((genre) => (
-            <button key={genre} onClick={() => alert(`Buscar filmes de ${genre}`)}>
+            <button key={genre} onClick={() => alert(`Buscar séries de ${genre}`)}>
               {genre}
             </button>
           ))}
@@ -75,32 +73,32 @@ const MovieList = () => {
           <div className="top-bar">
             <input
               type="text"
-              placeholder="Buscar filmes..."
+              placeholder="Buscar séries..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <h1 className="title">Nexus Movie</h1>
+            <h1 className="title">Nexus Series</h1>
             <button className="exit" onClick={() => navigate("/menu")}>
               Voltar
             </button>
           </div>
         </div>
 
-        {/* Grid de filmes */}
+        {/* Grid de séries */}
         <div className="grid">
-          {filteredMovies.map((movie) => {
-            const posterUrl = movie.poster_path
-              ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+          {filteredSeries.map((serie) => {
+            const posterUrl = serie.poster_path
+              ? `https://image.tmdb.org/t/p/w200${serie.poster_path}`
               : `${import.meta.env.BASE_URL}no-poster.png`;
 
             return (
               <div
-                key={movie.id}
+                key={serie.id}
                 className="card"
-                onClick={() => navigate(`/card/${movie.id}`)}
+                onClick={() => navigate(`/series/${serie.id}`)}
               >
-                <img src={posterUrl} alt={movie.title} />
-                <h3>{movie.title}</h3>
+                <img src={posterUrl} alt={serie.name} />
+                <h3>{serie.name}</h3>
               </div>
             );
           })}
@@ -131,4 +129,4 @@ const MovieList = () => {
   );
 };
 
-export default MovieList;
+export default SeriesPage;

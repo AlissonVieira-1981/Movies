@@ -6,7 +6,9 @@ import LandingPage from "./components/LandingPage";
 import MenuPage from "./pages/MenuPage";
 import MovieList from "./components/MovieList";
 import MovieDetails from "./pages/MovieDetails";
-import Canais from "./pages/Canais"; // 👈 Importamos a nova página
+import Canais from "./pages/Canais";
+import SeriesPage from "./pages/SeriesPage";
+import SeriesDetails from "./pages/SeriesDetails";
 import "./App.css";
 
 function App() {
@@ -29,14 +31,16 @@ function App() {
   }, []);
 
   return (
-    // 👇 Adicionamos o basename para funcionar no GitHub Pages
+    // 👇 basename para funcionar no GitHub Pages
     <Router basename="/Movies">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/lista" element={<MovieList movies={movies} />} />
         <Route path="/card/:id" element={<MovieDetails />} />
-        <Route path="/canais" element={<Canais />} /> {/* 👈 Nova rota adicionada */}
+        <Route path="/canais" element={<Canais />} />
+        <Route path="/series" element={<SeriesPage />} />
+        <Route path="/series/:id" element={<SeriesDetails />} />
       </Routes>
     </Router>
   );

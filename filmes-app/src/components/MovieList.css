@@ -239,6 +239,56 @@ body {
   margin: 0;
 }
 
+/* ===== ESTILO APRIMORADO PARA PAGINAÇÃO ===== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #000;
+  border-top: 2px solid #39ff14;
+  border-bottom: 2px solid #39ff14;
+  padding: 10px 0;
+  box-shadow: 0 0 10px #39ff14;
+}
+
+.pagination-btn {
+  background-color: #000;
+  color: #39ff14;
+  border: 2px solid #39ff14;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  text-shadow: 0 0 6px #39ff14;
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+  background-color: #39ff14;
+  color: #000;
+  box-shadow: 0 0 12px #39ff14;
+  transform: scale(1.05);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination-info {
+  font-size: 14px;
+  font-weight: bold;
+  color: #39ff14;
+  text-shadow: 0 0 6px #39ff14;
+  letter-spacing: 1px;
+}
+
+
 /* ===== CONFIGURAÇÃO PARA RESPONSIVO ===== */
 @media (max-width: 768px) {
   .movie-list {

@@ -1,4 +1,5 @@
 // src/pages/MenuPage.jsx
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const MenuPage = () => {
@@ -59,7 +60,6 @@ const MenuPage = () => {
           width: "clamp(180px, 25vw, 300px)",
           height: "auto",
           filter: "drop-shadow(0 0 12px #39ff14)",
-          
         }}
       />
 
@@ -132,7 +132,7 @@ const MenuPage = () => {
 
         {/* Botão Séries */}
         <button
-          onClick={() => alert("Página de séries em construção!")}
+          onClick={() => navigate("/series")}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = "#111")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
