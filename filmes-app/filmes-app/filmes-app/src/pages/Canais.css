@@ -1,0 +1,181 @@
+.canais-container {
+  display: flex;
+  min-height: 100vh;
+  color: #39ff14;
+  background-color: black;
+}
+
+/* Sidebar */
+.canais-sidebar {
+  width: 330px;
+  border-right: 2px solid #39ff14;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza */
+  gap: 8px; /* espaçamento uniforme */
+  background-color: #000;
+}
+
+.canais-sidebar button {
+  background-color: #000;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: 0 0 6px #39ff14;
+  width: 90%;
+  box-sizing: border-box;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.canais-sidebar button:hover {
+  background-color: #39ff14;
+  color: #000;
+}
+
+/* Área principal */
+.main-content {
+  flex: 1;
+  background-image: url("/Movies/images/futuristic-texture.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Player fixo (PC) */
+/* Player fixo (PC) */
+.player-fixed {
+  position: fixed;
+  top: 10px; /* reduz margem superior */
+  left: 63%; /* centraliza horizontalmente */
+  transform: translateX(-50%); /* garante centralização */
+  width: 95%; /* ocupa quase toda a largura disponível */
+  max-width: 944px; /* limite máximo */
+  height: 480px;
+  border: 2px solid #39ff14;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  background: none;
+  z-index: 1000;
+}
+
+
+/* Sinopse (PC) */
+.sinopse-fixed {
+  position: fixed;
+  top: 500px;
+  left: 380px;
+  width: 910px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 18px;
+  border: 2px solid #39ff14;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+.sinopse-fixed p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #d0ffd0;
+  margin-right: 40px;
+  text-shadow: 0 0 10px #39ff14;
+}
+
+/* ===== CONFIGURAÇÃO PARA RESPONSIVO ===== */
+/* ===== CONFIGURAÇÃO PARA RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .canais-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: url("/Movies/images/futuristic-texture.png"); /* mantém imagem de fundo */
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* fundo fixo */
+    padding-top: 330px; /* espaço para player + sinopse */
+    overflow-x: hidden; /* remove rolagem horizontal */
+    min-height: 100vh;
+  }
+
+  /* Player fixo no topo */
+  .player-fixed {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 480px;
+    height: 200px;
+    margin: 2px auto;
+    z-index: 1000;
+  }
+
+  /* Sinopse fixa logo abaixo do player */
+  .sinopse-fixed {
+    position: fixed;
+    top: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 330px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 12px;
+    border: 2px solid #39ff14;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+  }
+
+  .sinopse-fixed p {
+    font-size: 15px;
+  }
+
+  /* Botões em formato de lista */
+  .canais-sidebar {
+    width: 95%;
+    border: none;
+    padding: 6px;
+    display: flex;
+    flex-direction: column; /* lista vertical */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: transparent; /* deixa o fundo visível */
+    margin: 0 auto;
+    border-radius: 6px;
+    box-sizing: border-box;
+    z-index: 998; /* abaixo da sinopse */
+  }
+
+  .canais-sidebar button {
+    width: 90%;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 2px 0;
+    border: 2px solid #39ff14;
+    background-color: #000;
+    color: #39ff14;
+    text-shadow: 0 0 6px #39ff14;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+
+  .canais-sidebar button:hover {
+    background-color: #39ff14;
+    color: #000;
+  }
+}
+
