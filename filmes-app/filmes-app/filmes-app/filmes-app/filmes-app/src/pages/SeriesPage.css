@@ -1,0 +1,72 @@
+/* ===== TOPO AJUSTADO ===== */
+.top-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px 0;
+  background-color: #000; /* mantém o fundo único */
+  border-bottom: 2px solid #39ff14;
+  box-shadow: 0 0 10px #39ff14;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+  max-width: 900px;
+}
+
+.top-bar input {
+  flex: 1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #39ff14;
+  padding: 8px;
+  border: 2px solid #39ff14;
+  background-color: #111;
+  text-align: center;
+  box-shadow: 0 0 8px #39ff14;
+}
+
+.title {
+  font-size: 28px;
+  text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.exit {
+  background-color: transparent;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.exit:hover {
+  background-color: #39ff14;
+  color: #000;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .top-bar input {
+    width: 90%;
+  }
+
+  .exit {
+    width: 60%;
+  }
+}
