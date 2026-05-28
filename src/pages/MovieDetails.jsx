@@ -1,46 +1,79 @@
 // src/pages/MovieDetails.jsx
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { addRecentMovie } from "../utils/Recents";
+import {
+  addFavoriteMovie,
+  removeFavoriteMovie,
+  isFavoriteMovie,
+} from "../utils/Favorites";
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
+        setLoading(true);
+
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`
         );
+
         const data = await response.json();
+
         setMovie(data);
+        setFavorite(isFavoriteMovie(data.id));
+        addRecentMovie(data);
       } catch (error) {
-        console.error("Erro ao buscar detalhes:", error);
+        console.error("Erro ao buscar detalhes do filme:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchMovieDetails();
   }, [id]);
 
-  if (!movie) return <p style={{ color: "#39ff14" }}>Carregando detalhes...</p>;
+  if (loading) {
+    return (
+      <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px" }}>
+        <p>Carregando detalhes...</p>
+      </div>
+    );
+  }
 
-  // Se não houver poster, usa imagem padrão do public
+  if (!movie) {
+    return (
+      <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px" }}>
+        <p>Filme não encontrado.</p>
+      </div>
+    );
+  }
+
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
     : `${import.meta.env.BASE_URL}no-poster.png`;
 
+  const toggleFavorite = () => {
+    if (favorite) {
+      removeFavoriteMovie(movie.id);
+      setFavorite(false);
+    } else {
+      addFavoriteMovie(movie);
+      setFavorite(true);
+    }
+  };
+
   return (
-    <div
-      style={{
-        backgroundColor: "#000",
-        color: "#39ff14",
-        minHeight: "100vh",
-        padding: "20px",
-        position: "relative",
-      }}
-    >
-      {/* Botão fixo no canto superior esquerdo */}
+    <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px", position: "relative" }}>
       <button
         onClick={() => navigate("/lista")}
         style={{
@@ -58,25 +91,16 @@ const MovieDetails = () => {
           textShadow: "0 0 10px #e0e6df",
           transition: "0.3s",
         }}
-        onMouseOver={(e) => (e.target.style.backgroundColor = "#111")}
-        onMouseOut={(e) => (e.target.style.backgroundColor = "#000")}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#111")}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#000")}
       >
         ← Voltar
       </button>
 
-      {/* Título */}
-      <h1
-        style={{
-          color: "#e0e6df",
-          textShadow: "0 0 10px #e0e6df",
-          marginTop: "60px",
-          textAlign: "center",
-        }}
-      >
+      <h1 style={{ color: "#e0e6df", textShadow: "0 0 10px #e0e6df", marginTop: "60px", textAlign: "center" }}>
         {movie.title}
       </h1>
 
-      {/* Poster */}
       <img
         src={posterUrl}
         alt={movie.title}
@@ -91,16 +115,36 @@ const MovieDetails = () => {
         }}
       />
 
-      {/* Informações */}
       <p>
-        <strong>Sinopse:</strong> {movie.overview}
+        <strong>Sinopse:</strong>{" "}
+        {movie.overview || "Sinopse não disponível."}
       </p>
+
       <p>
-        <strong>Data de lançamento:</strong> {movie.release_date}
+        <strong>Data de lançamento:</strong>{" "}
+        {movie.release_date || "Não informada"}
       </p>
+
       <p>
         <strong>Nota:</strong> {movie.vote_average}
       </p>
+
+      <button
+        onClick={toggleFavorite}
+        style={{
+          marginTop: "20px",
+          padding: "12px 20px",
+          backgroundColor: favorite ? "#ff004c" : "#000",
+          border: "2px solid #ff004c",
+          color: "#fff",
+          borderRadius: "10px",
+          cursor: "pointer",
+          fontWeight: "bold",
+          fontSize: "16px",
+        }}
+      >
+        {favorite ? "❤️ Favoritado" : "🤍 Favoritar"}
+      </button>
     </div>
   );
 };
