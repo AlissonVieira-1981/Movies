@@ -7,7 +7,11 @@ const SearchBar = ({ onSearch }) => {
     e.preventDefault();
     onSearch(query);
   };
-
+<input
+  type="text"
+  placeholder="Buscar filme..."
+  onChange={(e) => setSearch(e.target.value)}
+/>
   return (
     <form onSubmit={handleSubmit} className="search-form">
       <input
