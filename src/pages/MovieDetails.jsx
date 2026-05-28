@@ -8,6 +8,8 @@ import {
   isFavoriteMovie,
 } from "../utils/Favorites";
 
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,11 +20,23 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-  const data = await response.json();
+      try {
+        setLoading(true);
 
-setMovie(data);
-setFavorite(isFavoriteMovie(data.id));
-addRecentMovie(data);
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`
+        );
+
+        const data = await response.json();
+
+        setMovie(data);
+        setFavorite(isFavoriteMovie(data.id));
+        addRecentMovie(data);
+      } catch (error) {
+        console.error("Erro ao buscar detalhes do filme:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchMovieDetails();
@@ -30,14 +44,7 @@ addRecentMovie(data);
 
   if (loading) {
     return (
-      <div
-        style={{
-          backgroundColor: "#000",
-          color: "#39ff14",
-          minHeight: "100vh",
-          padding: "20px",
-        }}
-      >
+      <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px" }}>
         <p>Carregando detalhes...</p>
       </div>
     );
@@ -45,14 +52,7 @@ addRecentMovie(data);
 
   if (!movie) {
     return (
-      <div
-        style={{
-          backgroundColor: "#000",
-          color: "#39ff14",
-          minHeight: "100vh",
-          padding: "20px",
-        }}
-      >
+      <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px" }}>
         <p>Filme não encontrado.</p>
       </div>
     );
@@ -73,15 +73,7 @@ addRecentMovie(data);
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#000",
-        color: "#39ff14",
-        minHeight: "100vh",
-        padding: "20px",
-        position: "relative",
-      }}
-    >
+    <div style={{ backgroundColor: "#000", color: "#39ff14", minHeight: "100vh", padding: "20px", position: "relative" }}>
       <button
         onClick={() => navigate("/lista")}
         style={{
@@ -105,14 +97,7 @@ addRecentMovie(data);
         ← Voltar
       </button>
 
-      <h1
-        style={{
-          color: "#e0e6df",
-          textShadow: "0 0 10px #e0e6df",
-          marginTop: "60px",
-          textAlign: "center",
-        }}
-      >
+      <h1 style={{ color: "#e0e6df", textShadow: "0 0 10px #e0e6df", marginTop: "60px", textAlign: "center" }}>
         {movie.title}
       </h1>
 

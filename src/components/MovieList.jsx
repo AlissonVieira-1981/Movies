@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./MovieList.css";
 
-const API_KEY = "1ea317e74edea61eab2f1a9e29d2efcd";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function MovieList() {
   const navigate = useNavigate();
