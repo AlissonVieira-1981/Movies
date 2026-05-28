@@ -12,7 +12,7 @@ const LandingPage = () => {
         className="landing-logo"
       />
 
-      <h1 className="landing-title">Nexus Movie</h1>
+      <h1 className="page-title">Nexus Movie</h1>
 
       <p className="landing-text">
         Bem-vindo ao seu portal de filmes, séries e canais abertos.

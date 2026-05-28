@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+}
+
+.menu-page {
+  min-height: 100vh;
+  width: 100%;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.78)),
+    url("/Movies/images/futuristic-texture.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #e0e6df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 54px);
+  padding: clamp(18px, 4vw, 32px);
+  overflow-x: hidden;
+}
+
+.login-return-button {
+  position: absolute;
+  top: clamp(14px, 3vw, 22px);
+  right: clamp(14px, 3vw, 24px);
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #e0e6df;
+  border: 3px solid #39ff14;
+  border-radius: 999px;
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow:
+    0 0 12px #39ff14,
+    0 0 24px rgba(57, 255, 20, 0.75),
+    inset 0 0 12px rgba(57, 255, 20, 0.22);
+  text-shadow:
+    0 0 6px #e0e6df,
+    0 0 12px rgba(57, 255, 20, 0.9);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  z-index: 2;
+}
+
+.login-return-button:hover {
+  transform: translateY(-2px);
+  background: rgba(12, 24, 12, 0.94);
+  border-color: #7cff65;
+  box-shadow:
+    0 0 16px #39ff14,
+    0 0 34px rgba(57, 255, 20, 0.95),
+    inset 0 0 16px rgba(57, 255, 20, 0.3);
+}
+
+.login-return-button:active {
+  transform: translateY(0);
+}
+
+.menu-brand {
+  width: min(100%, 980px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-title {
+  margin: 0;
+  color: #e8ffe5;
+  font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+  font-size: clamp(52px, 9vw, 108px);
+  font-weight: 300;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 8px rgba(232, 255, 229, 0.9),
+    0 0 18px rgba(57, 255, 20, 0.85),
+    0 0 36px rgba(57, 255, 20, 0.6),
+    0 6px 10px rgba(0, 0, 0, 0.9);
+}
+
+.page-title {
+  margin: 0;
+  color: #e8ffe5;
+  font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 8px rgba(232, 255, 229, 0.9),
+    0 0 18px rgba(57, 255, 20, 0.8),
+    0 0 30px rgba(57, 255, 20, 0.55);
+}
+.menu-buttons {
+  width: min(100%, 980px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 158px));
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.menu-buttons button {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.74);
+  color: #e0e6df;
+  border: clamp(3px, 0.45vw, 4px) solid #39ff14;
+  cursor: pointer;
+  box-shadow:
+    0 0 14px #39ff14,
+    0 0 30px rgba(57, 255, 20, 0.85),
+    inset 0 0 18px rgba(57, 255, 20, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4vw, 12px);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.menu-buttons button svg {
+  width: clamp(38px, 6vw, 52px);
+  height: clamp(38px, 6vw, 52px);
+  stroke: #39ff14;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter:
+    drop-shadow(0 0 7px rgba(57, 255, 20, 1))
+    drop-shadow(0 0 14px rgba(57, 255, 20, 0.85));
+  flex-shrink: 0;
+  font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+}
+
+.menu-buttons button span {
+  font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+  font-size: clamp(13px, 2vw, 17px);
+  font-weight: 300;
+  color: #e8ffe5;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-shadow:
+    0 0 8px rgba(232, 255, 229, 0.9),
+    0 0 14px rgba(57, 255, 20, 0.75);
+}
+
+.menu-buttons button:hover {
+  transform: translateY(-6px) scale(1.05);
+  background: rgba(8, 24, 8, 0.94);
+  border-color: #7cff65;
+  box-shadow:
+    0 0 18px #39ff14,
+    0 0 42px rgba(57, 255, 20, 1),
+    0 0 70px rgba(57, 255, 20, 0.55),
+    inset 0 0 24px rgba(57, 255, 20, 0.35);
+}
+
+.menu-buttons button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (max-width: 900px) {
+  .menu-buttons {
+    grid-template-columns: repeat(2, minmax(125px, 158px));
+  }
+}
+@media (max-width: 520px) {
+  .menu-page {
+    justify-content: center;
+    padding-top: 72px;
+    min-height: 100dvh;
+  }
+
+  .menu-title {
+    font-size: clamp(40px, 14vw, 62px);
+    letter-spacing: 2px;
+  }
+
+  .menu-buttons {
+    grid-template-columns: repeat(2, minmax(118px, 138px));
+  }
+}
+@media (max-height: 650px) and (min-width: 700px) {
+  .menu-page {
+    gap: 24px;
+    padding-top: 72px;
+    justify-content: center;
+  }
+
+  .menu-title {
+    font-size: clamp(42px, 8vw, 82px);
+  }
+
+  .menu-buttons {
+    grid-template-columns: repeat(4, minmax(105px, 132px));
+  }
+}
