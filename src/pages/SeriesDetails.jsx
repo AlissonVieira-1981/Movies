@@ -1,7 +1,7 @@
 // src/pages/SeriesDetails.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const SeriesDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const SeriesDetails = () => {
     const fetchSerie = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR`
+          `https://api.themoviedb.org/3/tv/${id}?api_key=api_key=${API_KEY}&language=pt-BR`
         );
         const data = await response.json();
         setSerie(data);

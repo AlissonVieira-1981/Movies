@@ -1,46 +1,118 @@
+:root {
+  --sidebar-width: 330px;
+  --gap: 16px;
+  --neon: #39ff14;
+  --soft-white: #e8ffe5;
+}
+
+/* Layout */
 .canais-container {
   display: flex;
-  min-height: 100vh;
-  color: #39ff14;
-  background-color: black;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  color: var(--neon);
 }
 
 /* Sidebar */
 .canais-sidebar {
-  width: 330px;
-  border-right: 2px solid #39ff14;
+  flex: 0 0 var(--sidebar-width);
+  height: 100vh;
   padding: 20px;
+  overflow-y: auto;
+  border-right: 2px solid var(--neon);
+  background-color: #000;
+
   display: flex;
   flex-direction: column;
-  align-items: center; /* centraliza */
-  gap: 15px; /* espaçamento uniforme */
-  background-color: #000;
+  align-items: center;
+  gap: 15px;
+}
+
+.canais-sidebar .page-title {
+  margin: 0;
+  color: var(--soft-white);
+  font-size: 32px;
+  font-weight: 300;
+  text-shadow: 0 0 10px var(--neon);
+}
+
+.canais-lista {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .canais-sidebar button {
-  background-color: #000;
-  border: 2px solid #39ff14;
-  color: #39ff14;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 12px;
-  text-shadow: 0 0 6px #39ff14;
   width: 90%;
-  box-sizing: border-box;
-  transition: 0.3s;
+  padding: 8px;
+  border: 2px solid var(--neon);
+  border-radius: 8px;
+  background-color: #000;
+  color: var(--neon);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
   text-align: center;
+  text-shadow: 0 0 6px var(--neon);
+  transition: 0.3s;
 }
 
-.canais-sidebar button:hover {
-  background-color: #39ff14;
+.canais-sidebar button:hover,
+.canais-sidebar button.active {
+  background-color: var(--neon);
   color: #000;
 }
 
-/* Área principal */
+.canais-status {
+  margin: 0;
+  color: #d0ffd0;
+  font-size: 13px;
+  text-align: center;
+  text-shadow: 0 0 8px var(--neon);
+}
+
+/* Botão Voltar */
+.canais-sidebar > .voltar-btn {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  left: auto;
+  width: 82px;
+  min-height: auto;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  transform: none;
+  z-index: 999;
+
+  border: 2px solid var(--neon);
+  border-radius: 6px;
+  background-color: #000;
+  color: var(--neon);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 6px var(--neon);
+  transition: 0.3s;
+}
+
+.canais-sidebar > .voltar-btn:hover {
+  background-color: var(--neon);
+  color: #000;
+}
+
+/* Conteúdo */
 .main-content {
   flex: 1;
+  height: 100vh;
+  min-width: 0;
+  overflow: hidden;
+  padding: var(--gap);
   background-image: url("/Movies/images/futuristic-texture.png");
   background-size: cover;
   background-position: left center;
@@ -48,134 +120,220 @@
   background-attachment: fixed;
 }
 
-/* Player fixo (PC) */
-/* Player fixo (PC) */
+.main-content > h1 {
+  position: fixed;
+  top: var(--gap);
+  left: calc(var(--sidebar-width) + var(--gap));
+  width: calc(100vw - var(--sidebar-width) - (var(--gap) * 2));
+  margin: 0;
+  color: var(--soft-white);
+  text-align: center;
+  font-weight: 300;
+  text-shadow: 0 0 10px var(--neon);
+  z-index: 20;
+}
+
+/* Player */
 .player-fixed {
   position: fixed;
-  top: 10px; /* reduz margem superior */
-  left: 63%; /* centraliza horizontalmente */
-  transform: translateX(-50%); /* garante centralização */
-  width: 95%; /* ocupa quase toda a largura disponível */
-  max-width: 944px; /* limite máximo */
-  height: 480px;
-  border: 2px solid #39ff14;
-  border-radius: 10px;
+  top: 72px;
+  left: calc(var(--sidebar-width) + var(--gap));
+  width: calc(100vw - var(--sidebar-width) - (var(--gap) * 2));
+  height: min(56vh, 520px);
   overflow: hidden;
+  border: 2px solid var(--neon);
+  border-radius: 10px;
+  background-color: #000;
   box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-  background: none;
-  z-index: 1000;
+  z-index: 10;
 }
 
+.player-fixed > div {
+  width: 100% !important;
+  height: 100% !important;
+}
 
-/* Sinopse (PC) */
+.player-fixed video,
+.player-fixed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #000;
+}
+
+.player-error {
+  height: 100%;
+  padding: 16px;
+  background-color: #000;
+  color: var(--neon);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.player-error button {
+  width: auto;
+  padding: 8px 14px;
+  border: 2px solid var(--neon);
+  border-radius: 8px;
+  background-color: #000;
+  color: var(--neon);
+  cursor: pointer;
+}
+
+.player-error button:hover {
+  background-color: var(--neon);
+  color: #000;
+}
+
+/* Sinopse */
 .sinopse-fixed {
   position: fixed;
-  top: 500px;
-  left: 380px;
-  width: 947px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.65);
+  left: calc(var(--sidebar-width) + var(--gap));
+  top: calc(72px + min(56vh, 520px) + 10px);
+  width: calc(100vw - var(--sidebar-width) - (var(--gap) * 2));
   padding: 18px;
-  border: 2px solid #39ff14;
+  border: 2px solid var(--neon);
   border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.72);
   box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 999;
-}
-.sinopse-fixed p {
-  font-size: 17px;
-  line-height: 1.6;
-  color: #d0ffd0;
-  margin-right: 40px;
-  text-shadow: 0 0 10px #39ff14;
+  text-align: center;
+  z-index: 10;
 }
 
-/* ===== CONFIGURAÇÃO PARA RESPONSIVO ===== */
-/* ===== CONFIGURAÇÃO PARA RESPONSIVO ===== */
+.sinopse-fixed p {
+  margin: 0;
+  color: #d0ffd0;
+  font-size: 17px;
+  line-height: 1.6;
+  text-shadow: 0 0 10px var(--neon);
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0px;
+    --gap: 10px;
+    --mobile-player-top: 48px;
+    --mobile-player-height: 28vh;
+    --mobile-sinopse-height: 88px;
+    --mobile-voltar-height: 34px;
+  }
+
   .canais-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-image: url("/Movies/images/futuristic-texture.png"); /* mantém imagem de fundo */
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background-image: url("/Movies/images/futuristic-texture.png");
     background-size: cover;
     background-position: bottom center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* fundo fixo */
-    padding-top: 330px; /* espaço para player + sinopse */
-    overflow-x: hidden; /* remove rolagem horizontal */
-    min-height: 100vh;
   }
 
-  /* Player fixo no topo */
+  .main-content {
+    width: 100%;
+    height: 100dvh;
+    padding: 0;
+    overflow: hidden;
+    background-image: none;
+  }
+
+  .main-content > h1 {
+    top: 8px;
+    left: var(--gap);
+    width: calc(100vw - (var(--gap) * 2));
+    font-size: 24px;
+    z-index: 30;
+  }
+
   .player-fixed {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 480px;
-    height: 200px;
-    margin: 2px auto;
-    z-index: 1000;
+    top: var(--mobile-player-top);
+    left: var(--gap);
+    width: calc(100vw - (var(--gap) * 2));
+    height: var(--mobile-player-height);
+    z-index: 20;
   }
 
-  /* Sinopse fixa logo abaixo do player */
   .sinopse-fixed {
-    position: fixed;
-    top: 210px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 330px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.65);
-    padding: 12px;
-    border: 2px solid #39ff14;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-    backdrop-filter: blur(4px);
-    z-index: 999;
+    top: calc(var(--mobile-player-top) + var(--mobile-player-height) + 8px);
+    left: var(--gap);
+    width: calc(100vw - (var(--gap) * 2));
+    height: var(--mobile-sinopse-height);
+    padding: 10px;
+    overflow-y: auto;
+    z-index: 20;
   }
 
   .sinopse-fixed p {
-    font-size: 15px;
+    font-size: 13px;
+    line-height: 1.35;
   }
 
-  /* Botões em formato de lista */
   .canais-sidebar {
-    width: 95%;
-    border: none;
-    padding: 3px;
-    display: flex;
-    flex-direction: column; /* lista vertical */
-    align-items: center;
-    justify-content: center;
+    position: fixed;
+    top: calc(
+      var(--mobile-player-top) +
+      var(--mobile-player-height) +
+      var(--mobile-sinopse-height) +
+      var(--mobile-voltar-height) +
+      28px
+    );
+    left: var(--gap);
+    right: var(--gap);
+    bottom: var(--gap);
+
+    width: auto;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 10px;
+    overflow-y: auto;
+
+    border: 2px solid var(--neon);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.88);
+    z-index: 10;
+  }
+
+  .canais-sidebar > .voltar-btn {
+    top: calc(
+      var(--mobile-player-top) +
+      var(--mobile-player-height) +
+      var(--mobile-sinopse-height) +
+      18px
+    );
+    left: 50%;
+    right: auto;
+    width: 150px;
+    height: var(--mobile-voltar-height);
+    transform: translateX(-50%);
+    z-index: 25;
+  }
+
+  .canais-sidebar .page-title {
+    margin-top: 0;
+    font-size: 24px;
+  }
+
+  .canais-lista {
     gap: 6px;
-    background-color: transparent; /* deixa o fundo visível */
-    margin: 0 auto;
-    border-radius: 6px;
-    box-sizing: border-box;
-    z-index: 998; /* abaixo da sinopse */
   }
 
   .canais-sidebar button {
-    width: 90%;
-    font-size: 13px;
-    padding: 8px;
+    width: 100%;
+    min-height: 34px;
+    padding: 7px;
+    font-size: 12px;
     border-radius: 6px;
-    margin: px 0;
-    border: 2px solid #39ff14;
-    background-color: #000;
-    color: #39ff14;
-    text-shadow: 0 0 6px #39ff14;
-    box-sizing: border-box;
-    transition: 0.3s;
   }
 
-  .canais-sidebar button:hover {
-    background-color: #39ff14;
-    color: #000;
+  .canais-status {
+    font-size: 12px;
   }
 }
-

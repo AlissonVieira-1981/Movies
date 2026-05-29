@@ -1,11 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./MenuPage.css";
+
+const INTRO_DURATION = 4000;
 
 function MenuPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [introActive, setIntroActive] = useState(false);
+
+  useEffect(() => {
+    if (!location.state?.playIntro) return;
+
+    setIntroActive(true);
+
+    const timer = window.setTimeout(() => {
+      setIntroActive(false);
+    }, INTRO_DURATION);
+
+    return () => window.clearTimeout(timer);
+  }, [location.state]);
 
   return (
-    <div className="menu-page">
+    <div className={`menu-page ${introActive ? "menu-intro" : ""}`}>
       <button className="login-return-button" onClick={() => navigate("/")}>
         Sair
       </button>

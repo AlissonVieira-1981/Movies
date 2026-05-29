@@ -1,76 +1,127 @@
-/* src/components/LandingPage.css */
-
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
-  background-color: #000;
   overflow-x: hidden;
+  background-color: #000;
 }
 
-/* 👇 prefixo exclusivo: landing- */
+* {
+  box-sizing: border-box;
+}
+
 .landing-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;        
-  justify-content: center;    
-  height: 100vh;
+  position: relative;
   width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
   background-color: #000;
-  background-image: url('/images/futuristic-texture.png');
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.72)),
+    url("/Movies/images/futuristic-texture.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #39ff14;
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
 }
 
-.landing-page::before {
-  content: "";
+.landing-page > *:not(.landing-grid):not(.landing-orbit):not(.landing-scan):not(.landing-entry-light) {
+  position: relative;
+  z-index: 2;
+}
+
+.landing-grid {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background:
+    linear-gradient(rgba(57, 255, 20, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.22;
+  transform: perspective(600px) rotateX(62deg) translateY(28%);
+  transform-origin: bottom;
+  animation: gridDrift 8s linear infinite;
   z-index: 0;
 }
 
-.landing-page > * {
-  position: relative;
+.landing-orbit {
+  position: absolute;
+  border: 1px solid rgba(57, 255, 20, 0.42);
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px rgba(57, 255, 20, 0.5),
+    inset 0 0 18px rgba(57, 255, 20, 0.16);
+  z-index: 1;
+}
+
+.landing-orbit-one {
+  width: min(72vw, 620px);
+  height: min(72vw, 620px);
+  animation: orbitSpin 18s linear infinite;
+}
+
+.landing-orbit-two {
+  width: min(52vw, 430px);
+  height: min(52vw, 430px);
+  animation: orbitSpin 12s linear infinite reverse;
+}
+
+.landing-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12%;
+  height: 18%;
+  background: linear-gradient(
+    transparent,
+    rgba(57, 255, 20, 0.18),
+    transparent
+  );
+  opacity: 0.45;
+  animation: scanMove 5s ease-in-out infinite;
   z-index: 1;
 }
 
 .landing-logo {
-  width: clamp(280px, 25vw, 420px);
-  filter: drop-shadow(0 0 25px #39ff14);
+  width: clamp(260px, 25vw, 420px);
   margin-bottom: 8px;
+  filter:
+    drop-shadow(0 0 14px #39ff14)
+    drop-shadow(0 0 32px rgba(57, 255, 20, 0.65));
+  animation: logoFloat 4s ease-in-out infinite;
 }
 
-.landing-title {
-  font-size: clamp(40px, 6vw, 72px);
-  font-weight: bold;
-  text-shadow: 0 0 10px #e0e6df, 0 0 20px #39ff14;
-  margin: 0 0 15px 0;
+.landing-heading {
+  margin: 0;
+  animation: titlePulse 3s ease-in-out infinite;
 }
 
 .landing-text {
-  font-size: clamp(16px, 2vw, 22px);
-  color: #e0e6df;
-  text-shadow: 0 0 8px #39ff14;
   max-width: 600px;
   margin: 0 auto;
   padding: 0 20px;
+  color: #e0e6df;
+  font-size: clamp(16px, 2vw, 22px);
+  text-shadow: 0 0 8px #39ff14;
 }
 
 .landing-form {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  max-width: 320px;
-  width: 100%;
-  margin: 0 auto;
 }
 
 .landing-input {
@@ -78,44 +129,353 @@ html, body {
   padding: 12px;
   border: 2px solid #39ff14;
   border-radius: 12px;
-  background-color: #111;
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-  color: #e0e6df;
-  font-size: 15px;
   outline: none;
+  background-color: #111;
+  color: #e0e6df;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  font-size: 15px;
+  text-align: center;
+}
+
+.landing-input::placeholder {
+  color: rgba(232, 255, 229, 0.68);
 }
 
 .landing-button {
+  width: 150px;
   padding: 10px 24px;
+  margin: 0 auto 20px;
   border: 2px solid #39ff14;
   border-radius: 12px;
   background-color: #111;
   color: #e0e6df;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  display: inline-block;
-  width: auto;
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .landing-button:hover {
+  transform: translateY(-2px);
   background-color: #222;
-  box-shadow: 0 0 25px rgba(57, 255, 20, 0.6);
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.75);
 }
 
-/* Responsividade */
+.landing-button:disabled {
+  cursor: wait;
+}
+
+.landing-entry-light {
+  position: absolute;
+  inset: auto 50% 12% auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #39ff14;
+  opacity: 0;
+  transform: translateX(50%);
+  box-shadow: 0 0 28px #39ff14;
+  z-index: 1;
+}
+
+.landing-page.is-entering .landing-logo {
+  animation: enterLogo 4s ease-in-out forwards;
+}
+
+.landing-page.is-entering .landing-heading,
+.landing-page.is-entering .landing-text {
+  animation: enterText 4s ease-in-out forwards;
+}
+
+.landing-page.is-entering .landing-form {
+  animation: enterForm 4s ease-in-out forwards;
+}
+
+.landing-page.is-entering .landing-grid {
+  animation: gridWarp 4s ease-in-out forwards;
+}
+
+.landing-page.is-entering .landing-orbit-one {
+  animation: enterOrbit 4s ease-in-out forwards;
+}
+
+.landing-page.is-entering .landing-orbit-two {
+  animation: enterOrbit 4s ease-in-out reverse forwards;
+}
+
+.landing-page.is-entering .landing-entry-light {
+  animation: entryLight 4s ease-in-out forwards;
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+@keyframes titlePulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(232, 255, 229, 0.9),
+      0 0 18px rgba(57, 255, 20, 0.8),
+      0 0 30px rgba(57, 255, 20, 0.55);
+  }
+
+  50% {
+    text-shadow:
+      0 0 12px rgba(232, 255, 229, 1),
+      0 0 30px rgba(57, 255, 20, 1),
+      0 0 54px rgba(57, 255, 20, 0.85);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg) scaleX(1.4);
+  }
+
+  to {
+    transform: rotate(360deg) scaleX(1.4);
+  }
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translateY(-40vh);
+  }
+
+  100% {
+    transform: translateY(120vh);
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 56px;
+  }
+}
+
+@keyframes enterLogo {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translateY(-14px) scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-80px) scale(0.18);
+    opacity: 0;
+  }
+}
+
+@keyframes enterText {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-34px);
+  }
+}
+
+@keyframes enterForm {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.02);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+  }
+}
+
+@keyframes gridWarp {
+  0% {
+    opacity: 0.22;
+    transform: perspective(600px) rotateX(62deg) translateY(28%);
+  }
+
+  100% {
+    opacity: 0.62;
+    transform: perspective(420px) rotateX(72deg) translateY(48%) scale(1.35);
+  }
+}
+
+@keyframes enterOrbit {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scaleX(1.4) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(540deg) scaleX(1.4) scale(0.2);
+  }
+}
+
+@keyframes entryLight {
+  0% {
+    opacity: 0;
+    transform: translateX(50%) scale(0.4);
+  }
+
+  35% {
+    opacity: 1;
+    transform: translateX(50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(50%) scale(60);
+  }
+}
+
 @media (max-width: 768px) {
   .landing-page {
     padding: 10px;
     gap: 15px;
   }
 
-  .landing-logo { width: 240px; margin-bottom: 5px; }
-  .landing-title { font-size: 30px; margin-bottom: 8px; }
-  .landing-text { font-size: 16px; padding: 0 15px; }
-  .landing-form { max-width: 260px; }
+  .landing-logo {
+    width: 240px;
+    margin-bottom: 5px;
+  }
+
+  .landing-text {
+    padding: 0 15px;
+    font-size: 16px;
+  }
+
+  .landing-form {
+    max-width: 260px;
+  }
+
+  .landing-orbit-one {
+    width: 86vw;
+    height: 86vw;
+  }
+
+  .landing-orbit-two {
+    width: 68vw;
+    height: 68vw;
+  }
+}
+
+.menu-page.menu-intro .menu-title {
+  animation: menuTitleIntro 4s ease-out both;
+}
+
+.menu-page.menu-intro .menu-buttons button {
+  animation: menuButtonIntro 4s ease-out both;
+}
+
+.menu-page.menu-intro .menu-buttons button:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.menu-page.menu-intro .menu-buttons button:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.menu-page.menu-intro .menu-buttons button:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+.menu-page.menu-intro .menu-buttons button:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.menu-page.menu-intro::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.24), transparent 58%);
+  animation: menuGlowIntro 4s ease-out both;
+  z-index: 1;
+}
+
+@keyframes menuTitleIntro {
+  0% {
+    opacity: 0;
+    transform: scale(0.82) translateY(-30px);
+    filter: blur(10px);
+  }
+
+  45% {
+    opacity: 1;
+    transform: scale(1.06) translateY(0);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes menuButtonIntro {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.75);
+    filter: blur(8px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.06);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes menuGlowIntro {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
 }

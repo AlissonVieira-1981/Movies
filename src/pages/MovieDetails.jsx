@@ -2,18 +2,13 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addRecentMovie } from "../utils/Recents";
-import {
-  addFavoriteMovie,
-  removeFavoriteMovie,
-  isFavoriteMovie,
-} from "../utils/Favorites";
+import { addFavoriteMovie, removeFavoriteMovie, isFavoriteMovie, } from "../utils/Favorites";
+import { getAuthorizedMovieByTmdbId, getYoutubeEmbedUrl, } from "../data/authorizedMovies";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [favorite, setFavorite] = useState(false);
@@ -62,6 +57,8 @@ const MovieDetails = () => {
     ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
     : `${import.meta.env.BASE_URL}no-poster.png`;
 
+  const authorizedMovie = getAuthorizedMovieByTmdbId(id);
+
   const toggleFavorite = () => {
     if (favorite) {
       removeFavoriteMovie(movie.id);
@@ -100,7 +97,6 @@ const MovieDetails = () => {
       <h1 style={{ color: "#e0e6df", textShadow: "0 0 10px #e0e6df", marginTop: "60px", textAlign: "center" }}>
         {movie.title}
       </h1>
-
       <img
         src={posterUrl}
         alt={movie.title}
@@ -115,6 +111,38 @@ const MovieDetails = () => {
         }}
       />
 
+      {authorizedMovie ? (
+        <div
+          style={{
+            width: "min(100%, 900px)",
+            aspectRatio: "16 / 9",
+            margin: "24px auto",
+            border: "2px solid #39ff14",
+            borderRadius: "10px",
+            overflow: "hidden",
+            boxShadow: "0 0 18px rgba(57, 255, 20, 0.45)",
+            backgroundColor: "#000",
+          }}
+        >
+          {authorizedMovie.provider === "youtube" && (
+            <iframe
+              src={getYoutubeEmbedUrl(authorizedMovie.videoUrl)}
+              title={authorizedMovie.title}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "0",
+              }}
+            />
+          )}
+        </div>
+      ) : (
+        <p style={{ textAlign: "center", marginTop: "20px" }}>
+          Este filme ainda não possui reprodução autorizada no app.
+        </p>
+      )}
       <p>
         <strong>Sinopse:</strong>{" "}
         {movie.overview || "Sinopse não disponível."}

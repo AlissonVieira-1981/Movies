@@ -62,9 +62,23 @@ function MovieList() {
           WELCOME
         </h2>
 
-        <div className="tv-icon">
-          📺
-        </div>
+      <div className="tv-icon">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+    fill="none"
+    stroke="#3bd81f"
+    strokeWidth="2.5"
+  >
+    <rect x="8" y="16" width="48" height="32" rx="4" ry="4" />
+    <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="black" />
+    <line x1="20" y1="16" x2="12" y2="4" />
+    <line x1="44" y1="16" x2="52" y2="4" />
+    <circle cx="54" cy="28" r="2" />
+    <circle cx="54" cy="34" r="2" />
+    <circle cx="54" cy="40" r="2" />
+  </svg>
+</div>
 
         <div className="genre-buttons">
           {genres.map((genre) => (
@@ -95,7 +109,7 @@ function MovieList() {
               }
             />
 
-           <h1 className="page-title">Nexus Movie</h1>
+           <h1 className="title">Nexus Movie</h1>
 
             <button
               className="exit"

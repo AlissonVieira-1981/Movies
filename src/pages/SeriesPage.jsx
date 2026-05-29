@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SeriesPage.css";
-
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const SeriesPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +33,7 @@ const SeriesPage = () => {
     const fetchSeries = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/popular?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR&page=${page}`
+          `https://api.themoviedb.org/3/tv/popular?api_key=api_key=${API_KEY}&language=pt-BR&page=${page}`
         );
 
         const data = await response.json();
