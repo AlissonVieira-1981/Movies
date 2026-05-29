@@ -1,24 +1,32 @@
-<<<<<<< HEAD
-# React + Vite
+# Nexus Movie
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React para explorar filmes, séries e canais abertos, com visual neon/futurista, busca, favoritos, recentes e reprodução de canais públicos via HLS.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Listagem de filmes populares via TMDB
+- Listagem de séries populares via TMDB
+- Detalhes de filmes e séries
+- Favoritos salvos no navegador
+- Filmes recentes salvos no navegador
+- Página de canais públicos com player HLS
+- Filtro automático de canais funcionando
+- Player para filmes autorizados via YouTube embed
+- Interface responsiva para desktop e mobile
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- React Router DOM
+- Axios
+- HLS.js
+- React Player
+- GitHub Pages
 
-## Expanding the ESLint configuration
+## Como Rodar Localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Instale as dependências:
 
-## 📄 Licença
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-=======
-# Movies
-My App Movie
->>>>>>> 5687474652c3fac5c036ad6dc17e4f3ebabdf012
+```bash
+npm install
