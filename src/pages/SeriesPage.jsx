@@ -33,7 +33,7 @@ const SeriesPage = () => {
     const fetchSeries = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/popular?api_key=api_key=${API_KEY}&language=pt-BR&page=${page}`
+          `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=pt-BR&page=${page}`
         );
 
         const data = await response.json();

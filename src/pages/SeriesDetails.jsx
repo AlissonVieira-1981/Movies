@@ -12,7 +12,7 @@ const SeriesDetails = () => {
     const fetchSerie = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}?api_key=api_key=${API_KEY}&language=pt-BR`
+          `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=pt-BR`
         );
         const data = await response.json();
         setSerie(data);
@@ -24,7 +24,7 @@ const SeriesDetails = () => {
     const fetchTrailer = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}/videos?api_key=1ea317e74edea61eab2f1a9e29d2efcd&language=pt-BR`
+          `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}&language=pt-BR`
         );
         const data = await response.json();
         const video = data.results.find((v) => v.site === "YouTube");
